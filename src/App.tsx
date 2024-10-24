@@ -1,22 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { Header } from './layout/Header.tsx'
+import { Content } from './layout/Content.tsx'
+import { Footer } from './layout/Footer.tsx'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export const App = () => {
   return (
-    <>
-      <div className="text-3xl font-bold text-neutral-800">
-        This is a Demo
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
+    <div className='flex flex-col h-full font-mono'>
+      <Header />
+      <Content />
+      <Footer />
+    </div>
   )
 }
-
-export default App
