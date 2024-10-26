@@ -16,7 +16,7 @@ export const Button = ({
     border
     border-neutral-600
     text-sm
-    text-neutral-400
+    text-neutral-500
     outline-none
     focus-visible:outline-blue-700
     focus-visible:outline-2

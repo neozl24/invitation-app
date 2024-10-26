@@ -1,5 +1,5 @@
 type FormInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  errorMessage?: string
+  errorMessage?: string | null
 }
 
 export const FormInput = ({
