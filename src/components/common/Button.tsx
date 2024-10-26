@@ -10,13 +10,16 @@ export const Button = ({
   const baseClassName = `
     flex
     items-center
+    justify-center
     h-[50px]
-    mb-20
     px-4
     border
+    border-neutral-600
     text-sm
     text-neutral-400
-    border-neutral-600
+    outline-none
+    focus-visible:outline-blue-700
+    focus-visible:outline-2
     hover:bg-neutral-100
     active:hover:bg-neutral-50
   `

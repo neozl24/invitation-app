@@ -4,7 +4,7 @@ import { Footer } from './layout/Footer.tsx'
 
 export const App = () => {
   return (
-    <div className='flex flex-col h-full font-mono'>
+    <div className='min-w-[320px] flex flex-col h-full font-mono'>
       <Header />
       <Content />
       <Footer />
