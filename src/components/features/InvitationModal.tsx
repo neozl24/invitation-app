@@ -1,9 +1,11 @@
+import { requestInvitation } from '../../utils/request.ts'
 import { Modal } from '../common/Modal.tsx'
 import { Button } from '../common/Button.tsx'
 import { FormInput } from '../common/FormInput.tsx'
-import { useForm, FOCUS_STATUS, FieldConfig } from '../../hooks/useForm.ts'
+import { useForm, FOCUS_STATUS } from '../../hooks/useForm.ts'
+import { useState } from 'react'
 
-const fields: FieldConfig[] = [{
+const fields = [{
   name: 'fullName',
   type: 'text',
   placeholder: 'Full name',
@@ -41,15 +43,32 @@ export const InvitationModal = ({
     handleInputChange,
     handleInputFocus,
     handleInputBlur,
-    handleSubmit,
+    handleFormSubmit,
   } = useForm(fields)
+
+  const [requestError, setRequestError] = useState('')
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()  // submit default behavior would refresh page
+
+    setRequestError('')
+
+    const callback = async () => {
+      try {
+        const result = await requestInvitation<string>(formData.fullName, formData.email)
+        console.log('=== success: ', result)
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error)
+        setRequestError(errorMessage)
+      }
+    }
+
+    handleFormSubmit(callback)
+  }
 
   return (
     <Modal className='w-11/12 sm:max-w-[500px] min-w-[320px]' title='Request an invite' onClose={onClose}>
-      <form
-        className='w-full'
-        onSubmit={handleSubmit}
-      >
+      <form className='w-full' onSubmit={onSubmit}>
         {
           fields.map((field) => {
             const fieldName = field.name
@@ -75,7 +94,7 @@ export const InvitationModal = ({
           Send
         </Button>
       </form>
-      <p className='my-4 h-6 italic text-center text-red-600'></p>
+      <p className='my-4 h-6 italic text-center text-red-600'>{requestError}</p>
     </Modal>
   )
 }

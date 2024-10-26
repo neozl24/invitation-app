@@ -55,9 +55,8 @@ export const useForm = <T extends readonly FieldConfig[]>(fields: T) => {
     return validate?.(value, formData) || null
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()  // default behavior would refresh page
-
+  const handleFormSubmit = (cbWhenValid?: () => void) => {
+    // if trigger submit, we will consider all inputs as they have been focused before
     setFocusStatus((prev) => {
       const newStatus = { ...prev }
       const keys = Object.keys(newStatus) as T[number]['name'][]
@@ -77,8 +76,8 @@ export const useForm = <T extends readonly FieldConfig[]>(fields: T) => {
 
     setErrors(formErrors)
 
-    if (checkIfNoError(errors)) {
-      console.log('=== all fields valid, send request now...')
+    if (checkIfNoError(formErrors)) {
+      cbWhenValid?.()
     }
   }
 
@@ -89,7 +88,7 @@ export const useForm = <T extends readonly FieldConfig[]>(fields: T) => {
     handleInputChange,
     handleInputFocus,
     handleInputBlur,
-    handleSubmit,
+    handleFormSubmit,
   }
 }
 
