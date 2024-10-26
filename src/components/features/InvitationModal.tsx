@@ -76,7 +76,7 @@ export const InvitationModal = ({
   }
 
   return (
-    <Modal className='w-11/12 sm:max-w-[500px] min-w-[320px]' title='Request an invite' onClose={onClose}>
+    <Modal title='Request an invite' onClose={onClose}>
       <form className='w-full' onSubmit={onSubmit}>
         {
           fields.map((field) => {

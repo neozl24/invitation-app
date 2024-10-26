@@ -16,6 +16,7 @@ export const Button = ({
     px-4
     border
     text-sm
+    font-medium
     outline-none
   `
   const statusClassName = disabled ? `

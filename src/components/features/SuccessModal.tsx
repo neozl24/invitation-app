@@ -7,8 +7,8 @@ export const SuccessModal = ({
   onClose: () => void
 }) => {
   return (
-    <Modal className='w-11/12 sm:max-w-[500px] min-w-[320px]' title='All done!' onClose={onClose}>
-      <p className='my-4 h-6 text-center'>
+    <Modal title='All done!' onClose={onClose}>
+      <p className='my-4 h-6 text-center text-neutral-500'>
         You will be one of the first to experience Broccoli & Co. when we launch.
       </p>
       <Button className='w-full mt-16' onClick={onClose}>OK</Button>
