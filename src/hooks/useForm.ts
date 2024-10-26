@@ -59,7 +59,7 @@ export const useForm = <T extends readonly FieldConfig[]>(fields: T) => {
     e.preventDefault()  // default behavior would refresh page
 
     setFocusStatus((prev) => {
-      const newStatus = {...prev}
+      const newStatus = { ...prev }
       const keys = Object.keys(newStatus) as T[number]['name'][]
       for (const key of keys) {
         newStatus[key] = FOCUS_STATUS.FOCUSED_BEFORE
@@ -93,36 +93,42 @@ export const useForm = <T extends readonly FieldConfig[]>(fields: T) => {
   }
 }
 
-const getInitialFormData = <T extends readonly FieldConfig[]>(fields: T): { [K in T[number]['name']]: string } => {
-  const data = {} as { [K in T[number]['name']]: string }
+const getInitialValue = <
+  T extends readonly FieldConfig[],
+  V
+>(
+  fields: T,
+  getDefaultValue: () => V
+): { [K in T[number]['name']]: V } => {
+  const initialValue = {} as { [K in T[number]['name']]: V }
 
   fields.forEach((field) => {
-    data[field.name as T[number]['name']] = ''
+    initialValue[field.name as T[number]['name']] = getDefaultValue()
   })
 
-  return data
+  return initialValue
+}
+
+const getInitialFormData = <T extends readonly FieldConfig[]>(fields: T) => {
+  return getInitialValue(fields, () => '')
 }
 
 type FocusValue = typeof FOCUS_STATUS[keyof typeof FOCUS_STATUS]
 
-const getInitialFocusStatus = <T extends readonly FieldConfig[]>(fields: T): { [K in T[number]['name']]: FocusValue } => {
-  const status = {} as { [K in T[number]['name']]: FocusValue }
-
-  fields.forEach((field) => {
-    status[field.name as T[number]['name']] = FOCUS_STATUS.NEVER_FOCUSED
-  })
-
-  return status
+const getInitialFocusStatus = <
+  T extends readonly FieldConfig[]
+>(
+  fields: T
+): { [K in T[number]['name']]: FocusValue } => {
+  return getInitialValue(fields, () => FOCUS_STATUS.NEVER_FOCUSED)
 }
 
-const getInitialErrors = <T extends readonly FieldConfig[]>(fields: T): { [K in T[number]['name']]: string | null } => {
-  const errors = {} as { [K in T[number]['name']]: string | null }
-
-  fields.forEach((field) => {
-    errors[field.name as T[number]['name']] = null
-  })
-
-  return errors
+const getInitialErrors = <
+  T extends readonly FieldConfig[]
+>(
+  fields: T
+): { [K in T[number]['name']]: string | null } => {
+  return getInitialValue(fields, () => null)
 }
 
 /**
