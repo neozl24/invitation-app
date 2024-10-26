@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   className = '',
   children,
+  disabled,
   ...props
 }: ButtonProps) => {
   const baseClassName = `
@@ -14,17 +15,27 @@ export const Button = ({
     h-[50px]
     px-4
     border
-    border-neutral-600
     text-sm
-    text-neutral-500
     outline-none
+  `
+  const statusClassName = disabled ? `
+    text-neutral-300
+    border-neutral-300
+  ` : `
+    text-neutral-500
+    border-neutral-600
     focus-visible:outline-blue-700
     focus-visible:outline-2
     hover:bg-neutral-100
     active:hover:bg-neutral-50
   `
+
   return (
-    <button className={`${baseClassName} ${className}`} {...props}>
+    <button
+      className={`${baseClassName} ${statusClassName} ${className}`}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   )

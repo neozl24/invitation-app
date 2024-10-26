@@ -33,8 +33,10 @@ const fields = [{
 
 export const InvitationModal = ({
   onClose,
+  onSuccess,
 }: {
   onClose: () => void
+  onSuccess: () => void
 }) => {
   const {
     formData,
@@ -46,21 +48,28 @@ export const InvitationModal = ({
     handleFormSubmit,
   } = useForm(fields)
 
+  const [loading, setLoading] = useState(false)
   const [requestError, setRequestError] = useState('')
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()  // submit default behavior would refresh page
 
+    if (loading) {
+      return
+    }
+
     setRequestError('')
 
     const callback = async () => {
+      setLoading(true)
       try {
-        const result = await requestInvitation<string>(formData.fullName, formData.email)
-        console.log('=== success: ', result)
+        await requestInvitation<string>(formData.fullName, formData.email)
+        onSuccess()
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
         setRequestError(errorMessage)
       }
+      setLoading(false)
     }
 
     handleFormSubmit(callback)
@@ -90,8 +99,8 @@ export const InvitationModal = ({
             )
           })
         }
-        <Button type='submit' className='w-full mt-16'>
-          Send
+        <Button type='submit' className='w-full mt-16' disabled={loading}>
+          {loading ? 'Sending, please wait...' : 'Send'}
         </Button>
       </form>
       <p className='my-4 h-6 italic text-center text-red-600'>{requestError}</p>

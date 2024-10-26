@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Button } from '../components/common/Button.tsx'
 import { InvitationModal } from '../components/features/InvitationModal.tsx'
+import { SuccessModal } from '../components/features/SuccessModal.tsx'
 
 export const Content = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showInvitationModal, setShowInvitationModal] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   return (
     <>
@@ -14,13 +16,28 @@ export const Content = () => {
         <p className='my-8 text-center text-neutral-400 text-lg'>Be the first to know when we launch</p>
         <Button
           className='mb-8'
-          onClick={() => { setShowModal(true) }}
+          onClick={() => { setShowInvitationModal(true) }}
         >
           Request an invite
         </Button>
       </div>
       {
-        showModal ? <InvitationModal onClose={() => { setShowModal(false) }} /> : null
+        showInvitationModal ? (
+          <InvitationModal
+            onClose={() => {
+              setShowInvitationModal(false)
+            }}
+            onSuccess={() => {
+              setShowInvitationModal(false)
+              setShowSuccessModal(true)
+            }}
+          />
+        ) : null
+      }
+      {
+        showSuccessModal ? (
+          <SuccessModal onClose={() => {setShowSuccessModal(false)}} />
+        ): null
       }
     </>
   )
