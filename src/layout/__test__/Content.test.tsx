@@ -1,8 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Content } from '../Content'
-// import { Button } from '../../components/common/Button.tsx'
-// import { InvitationModal } from '../../components/features/InvitationModal.tsx'
-// import { SuccessModal } from '../../components/features/SuccessModal.tsx'
 
 vi.mock('../../components/features/InvitationModal.tsx', () => ({
   InvitationModal: ({
