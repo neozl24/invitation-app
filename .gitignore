@@ -26,3 +26,6 @@ dist-ssr
 # Typescript cache file to help build
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+
+# Vitest
+coverage
