@@ -18,7 +18,7 @@ export const FormInput = ({
   const errorStatusClassName = 'outline-2 outline-red-600'
   const statusClassName = errorMessage ? errorStatusClassName : normalStatusClassName
 
-  const className = `${baseClassName} ${statusClassName} ${props.className}`
+  const className = `${baseClassName} ${statusClassName} ${props.className || ''}`
 
   return (
     <>
