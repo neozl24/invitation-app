@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders name 1`] = `
+<DocumentFragment>
+  <div
+    class="w-full h-16 sm:h-24 flex flex-col justify-center items-center border-t border-solid border-t-neutral-300"
+  >
+    <p
+      class="flex items-center text-xs sm:text-sm italic text-neutral-400 mb-1"
+    >
+      Made with
+      <img
+        alt="love icon"
+        class="inline ml-1 mr-1"
+        src="/src/assets/heart.svg"
+        width="20"
+      />
+      in Melbourne.
+    </p>
+    <p
+      class="flex items-center text-xs sm:text-sm italic text-neutral-400 "
+    >
+      © 2016 Broccoli & Co. All rights reserved.
+    </p>
+  </div>
+</DocumentFragment>
+`;

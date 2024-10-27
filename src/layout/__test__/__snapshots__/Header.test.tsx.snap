@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders name 1`] = `
+<DocumentFragment>
+  <div
+    class="w-full h-16 sm:h-24 flex justify-center border-b border-solid border-b-neutral-300"
+  >
+    <div
+      class="flex h-full items-center justify-center w-full lg:w-[1000px] lg:justify-start"
+    >
+      <img
+        alt="Broccoli logo"
+        class="mr-4 hidden sm:inline"
+        src="/broccoli.svg"
+        width="32"
+      />
+      <h3
+        class="font-bold text-neutral-500 text-3xl sm:text-4xl"
+      >
+        BROCCOLI & CO
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;
