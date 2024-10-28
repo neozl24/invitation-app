@@ -14,7 +14,7 @@ export default defineConfig({
         './*.config.{js,ts}',
         'dist',
         './src/main.tsx',
-        'vite-env.d.ts'
+        './src/vite-env.d.ts'
       ]
     }
   },
