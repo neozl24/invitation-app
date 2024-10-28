@@ -77,7 +77,11 @@ export const InvitationModal = ({
 
   return (
     <Modal title='Request an invite' onClose={onClose}>
-      <form className='w-full' onSubmit={onSubmit}>
+      <form
+        className='w-full'
+        onSubmit={onSubmit}
+        data-testid='invitation-form'
+      >
         {
           fields.map((field) => {
             const fieldName = field.name
